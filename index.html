@@ -12,17 +12,21 @@
 <body>
 
   <div class="container">
+    <header class="text-center">
+      <h1>Dungeon Crawl Battle Royale</h1>
+      <h3>Choose you hero... defeat the rest!</h3>
+    </header>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Choose your character:</h3>
+        <h3 class="panel-title">Click a character to check it's stats:</h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-xs-6 col-md-10">
-            <span class="character" id="fighter"><img src="http://placehold.it/100x150" /></span>
-            <span class="character" id="mage"><img src="http://placehold.it/100x150" /></span>
-            <span class="character" id="theif"><img src="http://placehold.it/100x150" /></span>
-            <span class="character" id="test"><img src="http://placehold.it/100x150" /></span>
+            <span class="character" id="fighter"><img src="img/fighter.png"  height="200" /></span>
+            <span class="character" id="mage"><img src="img/mage.png"  height="200" /></span>
+            <span class="character" id="theif"><img src="img/theif.png"  height="200" /></span>
+            <span class="character" id="archer"><img src="img/archer.png"  height="200" /></span>
           </div>
           <div class="col-xs-6 col-md-2">
             <button type="button" id="select-char-btn" class="btn btn-success">Select Character</button>
@@ -38,7 +42,7 @@
             <h3 class="panel-title">Player Stats</h3>
           </div>
           <div class="panel-body">
-            <div class="stats"></div>
+            <div class="stats text-capitalize"></div>
           </div>
         </div>
       </div>
@@ -48,7 +52,7 @@
             <h3 class="panel-title">Enemy Stats</h3>
           </div>
           <div class="panel-body">
-            <div class="stats2"></div>
+            <div class="stats2 text-capitalize"></div>
           </div>
         </div>
       </div>
@@ -72,7 +76,7 @@
           <div id="enemy-hp-bar" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
           </div>
         </div>
-        <div id="enemy"></div>
+        <div id="enemy" class="text-right"></div>
       </div>
 
     </div>

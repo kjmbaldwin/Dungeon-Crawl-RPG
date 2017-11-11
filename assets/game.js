@@ -1,19 +1,25 @@
 var fighter = {
-  hp      : '120',
-  attack  : 6,
-  counter : 30
+  hp      : '200',
+  attack  : 5,
+  counter : 15
 }
 
 var mage = {
-  hp      : '80',
-  attack  : 15,
-  counter : 20
+  hp      : '100',
+  attack  : 10,
+  counter : 30
 }
 
 var theif = {
-  hp      : '100',
-  attack  : 8,
+  hp      : '125',
+  attack  : 4,
   counter : 40
+}
+
+var archer = {
+  hp      : '125',
+  attack  : 6,
+  counter : 20
 }
 
 var initialSelection;
@@ -27,19 +33,13 @@ var enemySelect = false;
 
 
 
-// when the object is clicked display stats
-// give option to choose as character, or fight
-// when choose character is slected, move to left side of board 
-// when fight is selected move to right side of board
-
-
-
 //load HTML elements with objects defined above
 $('#fighter').attr(fighter);
 $('#mage').attr(mage);
 $('#theif').attr(theif);
+$('#archer').attr(archer);
 
-//start with buttons hidden hidden
+//start with buttons hidden 
 $('#attack-btn').hide();
 $('#select-char-btn').hide();
 $('#stats-panel').hide();
@@ -48,7 +48,7 @@ $('#stats-panel').hide();
 
 
 
-//print stats in the panel when character image is clicked
+//print stats in the correct panel when character image is clicked
 $('.character').on('click', function(){
 
   initialSelection = this;
@@ -73,7 +73,7 @@ $('.character').on('click', function(){
 
 });
 
-//move character and enemy to game board
+//move character and enemy to game board when you click the select button
 $('#select-char-btn').on('click', function(){
   
   if(!playerSelect){
@@ -90,6 +90,7 @@ $('#select-char-btn').on('click', function(){
     $('#attack-btn').show();
     $('#enemy-hp-bar').show();
     $('#enemy').append(initialSelection);
+    $("#enemy span img").addClass('flip');
     $('#select-char-btn').hide();
     // $('.stats2').html(""); 
     initializeEnemy();
@@ -97,22 +98,23 @@ $('#select-char-btn').on('click', function(){
   
 });
 
+//attack button math
 $('#attack-btn').on('click', function(){ 
 
-  if (playerHP <= 0){
-    $('.stats').text('You dead');
-  }
-
-  else{
+    //if player is not dead calculate enemy stats
+    if(playerHP > 0){
 
     enemyHP = enemyHP - currentAttack;
     var barEnemy = (enemyHP / $('#enemy span').attr('hp')) * 100;
     $('#enemy-hp-bar').css('width', barEnemy+'%');
     pickNewEnemy();
 
-    currentAttack = currentAttack * 2;
+    currentAttack = currentAttack * 1.5;
     console.log('currentAttack ' + currentAttack);
+  }
 
+  //after enemy is hit, if enemy is not, dead calcualte counter attack
+  if(enemyHP > 0){
     playerHP = playerHP - enemyCounter;
     var barPlayer = (playerHP / $('#player span').attr('hp')) * 100;
      $('#player-hp-bar').css('width', barPlayer+'%');
@@ -121,10 +123,11 @@ $('#attack-btn').on('click', function(){
 
 });
 
-  var currentAttack;
-  var playerHP;
-  var enemyHP;
-  var enemyCounter;
+var currentAttack;
+var playerHP;
+var enemyHP;
+var enemyCounter;
+
 
 function initializePlayer(){
   currentAttack = $('#player span').attr('attack');
@@ -136,7 +139,6 @@ function initializeEnemy(){
   enemyHP = $('#enemy span').attr('hp');
   enemyCounter = $('#enemy span').attr('counter');
   $('#enemy-hp-bar').css('width', '100%');
-
 }
 
 function pickNewEnemy(){
@@ -151,10 +153,8 @@ function pickNewEnemy(){
 
 function areYouDead(){
   if (playerHP <= 0){
-    $('.stats').text('You dead');
+    $('.stats').text('You dead ಥ_ಥ');
   }
-
-
 }
 
 

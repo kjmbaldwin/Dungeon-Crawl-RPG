@@ -10,7 +10,7 @@ var mage = {
   counter : 30
 }
 
-var theif = {
+var thief = {
   hp      : '125',
   attack  : 8,
   counter : 40
@@ -36,7 +36,7 @@ var enemySelect = false;
 //load HTML elements with objects defined above
 $('#fighter').attr(fighter);
 $('#mage').attr(mage);
-$('#theif').attr(theif);
+$('#thief').attr(thief);
 $('#archer').attr(archer);
 
 //start with buttons hidden 
@@ -113,7 +113,7 @@ $('#attack-btn').on('click', function(){
     console.log('currentAttack ' + currentAttack);
   }
 
-  //after enemy is hit, if enemy is not, dead calcualte counter attack
+  //after enemy is hit, if enemy is not, dead calculate counter attack
   if(enemyHP > 0){
     playerHP = playerHP - enemyCounter;
     var barPlayer = (playerHP / $('#player span').attr('hp')) * 100;
@@ -172,7 +172,7 @@ if player hp = 0
 add message that you lose to stats
 
 if enemy health = 0
-enemySelect = flase
+enemySelect = false
 add defeated message to stats2
 
 

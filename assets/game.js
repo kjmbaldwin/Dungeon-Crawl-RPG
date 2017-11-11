@@ -1,24 +1,24 @@
 var fighter = {
   hp      : '200',
-  attack  : 5,
-  counter : 15
+  attack  : 8,
+  counter : 10
 }
 
 var mage = {
   hp      : '100',
-  attack  : 10,
+  attack  : 16,
   counter : 30
 }
 
 var theif = {
   hp      : '125',
-  attack  : 4,
+  attack  : 8,
   counter : 40
 }
 
 var archer = {
   hp      : '125',
-  attack  : 6,
+  attack  : 12,
   counter : 20
 }
 
@@ -102,14 +102,14 @@ $('#select-char-btn').on('click', function(){
 $('#attack-btn').on('click', function(){ 
 
     //if player is not dead calculate enemy stats
-    if(playerHP > 0){
+    if(playerHP > 0 && enemySelect){
 
     enemyHP = enemyHP - currentAttack;
     var barEnemy = (enemyHP / $('#enemy span').attr('hp')) * 100;
     $('#enemy-hp-bar').css('width', barEnemy+'%');
     pickNewEnemy();
 
-    currentAttack = currentAttack * 1.5;
+    currentAttack = currentAttack + attackBase;
     console.log('currentAttack ' + currentAttack);
   }
 
@@ -123,6 +123,7 @@ $('#attack-btn').on('click', function(){
 
 });
 
+var attackBase
 var currentAttack;
 var playerHP;
 var enemyHP;
@@ -130,7 +131,7 @@ var enemyCounter;
 
 
 function initializePlayer(){
-  currentAttack = $('#player span').attr('attack');
+  currentAttack = attackBase = parseInt($('#player span').attr('attack'));
   playerHP = $('#player span').attr('hp');
   $('#player-hp-bar').css('width', '100%');
 }
@@ -154,7 +155,7 @@ function pickNewEnemy(){
 function areYouDead(){
   if (playerHP <= 0){
     $('#player span img').css({'transform':'rotate(-90deg)'}, 'normal');
-    $('.stats').text('You dead ಥ_ಥ');
+    $('.stats').html('<h2>You dead ಥ_ಥ</h2>');
   }
 }
 

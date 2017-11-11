@@ -153,6 +153,7 @@ function pickNewEnemy(){
 
 function areYouDead(){
   if (playerHP <= 0){
+    $('#player span img').css({'transform':'rotate(-90deg)'}, 'normal');
     $('.stats').text('You dead ಥ_ಥ');
   }
 }
